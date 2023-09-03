@@ -16,12 +16,12 @@ def home(request):
         st = speedtest.Speedtest()
         st.get_best_server()
         
-        # Запустите измерение скорости. Мы не возвращаем результаты здесь.
+       
         st.download()
         st.upload()
         
-        download_speed = st.results.download / 1024 / 1024  # Скорость загрузки в Mbps
-        upload_speed = st.results.upload / 1024 / 1024  # Скорость загрузки в Mbps
+        download_speed = st.results.download / 1024 / 1024  
+        upload_speed = st.results.upload / 1024 / 1024  
     
     return render(
         request,
