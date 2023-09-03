@@ -11,6 +11,9 @@
         </div>
         <p class="lead">Download Speed: {{ download_speed }} Mbps</p>
         <p class="lead">Upload Speed: {{ upload_speed }} Mbps</p>
+        {% if unique_link %}
+        <p>Unique Link to Results: <a href="{% url 'speed_test_result' unique_link %}">{{ request.build_absolute_uri|safe }}{% url 'speed_test_result' unique_link %}</a></p>
+        {% endif %}
         {% if download_time is not None %}
         <p>Estimated download time {{ file_size }} Mbp: {{ download_time|floatformat:2 }} sec</p>
         {% endif %}
