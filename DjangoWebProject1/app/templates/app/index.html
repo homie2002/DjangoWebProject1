@@ -1,13 +1,23 @@
 {% extends "app/layout.html" %}
 
 {% block content %}
-
 <div class="jumbotron">
     <h1>Speed Test Results</h1>
-    <p class="lead">Download Speed: {{ download_speed }} Mbps</p>
-    <p class="lead">Upload Speed: {{ upload_speed }} Mbps</p>
     <form method="post">
         {% csrf_token %}
+        <div class="form-group">
+            <label for="file-size">File Size (MB):</label>
+            <input type="number" id="file_size" name="file_size" step="0.01" min="0.01" required>
+        </div>
+        <p class="lead">Download Speed: {{ download_speed }} Mbps</p>
+        <p class="lead">Upload Speed: {{ upload_speed }} Mbps</p>
+        {% if download_time is not None %}
+        <p>Estimated download time {{ file_size }} Mbp: {{ download_time|floatformat:2 }} sec</p>
+        {% endif %}
+
+        {% if upload_time is not None %}
+        <p>Estimated uploading time {{ file_size }} Mbp: {{ upload_time|floatformat:2 }} sec</p>
+        {% endif %}
         <button type="submit" class="btn btn-primary">Start Speed Test</button>
     </form>
 </div>

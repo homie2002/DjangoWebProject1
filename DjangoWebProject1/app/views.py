@@ -11,8 +11,11 @@ import speedtest
 def home(request):
     download_speed = None
     upload_speed = None
+    download_time = None
+    upload_time = None
     
     if request.method == 'POST':
+        file_size = float(request.POST.get('file_size', 0.01))  # Get the file size from the form, default to 0.01 MB
         st = speedtest.Speedtest()
         st.get_best_server()
         
@@ -22,6 +25,16 @@ def home(request):
         
         download_speed = st.results.download / 1024 / 1024  # Скорость загрузки в Mbps
         upload_speed = st.results.upload / 1024 / 1024  # Скорость загрузки в Mbps
+
+        if download_speed > 0:
+            download_time = file_size / download_speed
+        else:
+            download_time = None
+
+        if upload_speed > 0:
+            upload_time = file_size / upload_speed
+        else:
+            upload_time = None
     
     return render(
         request,
@@ -29,5 +42,7 @@ def home(request):
         {
             'download_speed': download_speed,
             'upload_speed': upload_speed,
+            'download_time': download_time,
+            'upload_time': upload_time,
         }
     )
