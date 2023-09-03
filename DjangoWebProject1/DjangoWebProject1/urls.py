@@ -25,5 +25,6 @@ urlpatterns = [
          name='login'),
     path('logout/', LogoutView.as_view(next_page='/'), name='logout'),
     path('admin/', admin.site.urls),
-     path('result/<str:unique_link>/', views.speed_test_result, name='speed_test_result'),
+    path('result/<str:unique_link>/', views.speed_test_result, name='speed_test_result'),
+    path('history/', views.history, name='history'),
 ]

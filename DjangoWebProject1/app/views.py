@@ -68,3 +68,12 @@ def speed_test_result(request, unique_link):
     result = get_object_or_404(SpeedTestResult, unique_link=unique_link)
     response = f"Download Speed: {result.download_speed} Mbps<br>Upload Speed: {result.upload_speed} Mbps"
     return HttpResponse(response)
+
+
+def history(request):
+    results = SpeedTestResult.objects.all().order_by('-id')  
+    return render(
+        request,
+        'app/history.html', 
+        {'results': results}
+    )
