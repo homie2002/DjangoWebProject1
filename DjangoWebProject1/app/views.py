@@ -23,8 +23,9 @@ def home(request):
         st.download()
         st.upload()
         
-        download_speed = st.results.download / 1024 / 1024  # Скорость загрузки в Mbps
-        upload_speed = st.results.upload / 1024 / 1024  # Скорость загрузки в Mbps
+        download_speed = st.results.download / 1024 / 1024  
+        upload_speed = st.results.upload / 1024 / 1024  
+
 
         if download_speed > 0:
             download_time = file_size / download_speed
