@@ -20,8 +20,18 @@ def home(request):
         st.download()
         st.upload()
         
-        download_speed = st.results.download / 1024 / 1024  
-        upload_speed = st.results.upload / 1024 / 1024  
+        download_speed = st.results.download / 1024 / 1024  # �������� �������� � Mbps
+        upload_speed = st.results.upload / 1024 / 1024  # �������� �������� � Mbps
+
+        if download_speed > 0:
+            download_time = file_size / download_speed
+        else:
+            download_time = None
+
+        if upload_speed > 0:
+            upload_time = file_size / upload_speed
+        else:
+            upload_time = None
     
     return render(
         request,
