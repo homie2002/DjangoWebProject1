@@ -1,0 +1,29 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+<div class="log-form">
+    <h2>Login to your account</h2>
+    
+    <div>
+        <style>
+            h5 {
+                color: red;
+            }
+        </style>
+        {% for message in messages %}
+        <h5>{{message}}</h5>
+        {% endfor %}
+    </div>
+    
+    <form action="" method="POST">
+        {% csrf_token %}
+        <input type="text" name="username" title="username" placeholder="username" />
+        <input type="password" name="password" placeholder="password" />
+        <button type="submit" class="btn">Login</button>
+        <!--<a class="forgot" href="#">Forgot Username?</a>-->
+    </form>
+
+</div>
+
+
+{% endblock %}
