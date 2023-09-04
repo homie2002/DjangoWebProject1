@@ -16,6 +16,8 @@ from django.http import HttpResponse
 from django.contrib.auth.models import User, auth
 from django.contrib import messages
 from .models import Profile
+from django.contrib.auth.decorators import login_required
+
 
 
 
@@ -76,7 +78,6 @@ def speed_test_result(request, unique_link):
     result = get_object_or_404(SpeedTestResult, unique_link=unique_link)
     response = f"Download Speed: {result.download_speed} Mbps<br>Upload Speed: {result.upload_speed} Mbps"
     return HttpResponse(response)
-
 
 def history(request):
     results = SpeedTestResult.objects.all().order_by('-id')  

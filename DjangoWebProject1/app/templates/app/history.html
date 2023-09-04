@@ -4,6 +4,7 @@
 {% block content %}
 <div class="jumbotron">
     <h1>Speed Test History</h1>
+    {% if user.is_authenticated %}
     <table class="table table-striped">
         <thead>
             <tr>
@@ -28,5 +29,10 @@
             {% endfor %}
         </tbody>
     </table>
+    {% else %}
+    <p>
+        To view history you need <a href="{% url 'signin' %}">sign in</a>.
+    </p>
+    {% endif %}
 </div>
 {% endblock %}
